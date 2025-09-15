@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: lab7-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: lab7
+      MYSQL_USER: lab7
+      MYSQL_PASSWORD: lab7pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/1-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -ulab7 -plab7pass -h 127.0.0.1 --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
