@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS lab7;
+CREATE USER IF NOT EXISTS 'lab7'@'%' IDENTIFIED BY 'lab7pass';
+GRANT ALL PRIVILEGES ON lab7.* TO 'lab7'@'%';
+FLUSH PRIVILEGES;
+
+USE lab7;
+
+DROP TABLE IF EXISTS raw_products;
+CREATE TABLE raw_products (
+  id BIGINT PRIMARY KEY,
+  name VARCHAR(255),
+  energy_100g DOUBLE,
+  fat_100g DOUBLE,
+  sugars_100g DOUBLE
+);
+
+DROP TABLE IF EXISTS predictions;
+CREATE TABLE predictions (
+  id BIGINT NOT NULL,
+  cluster INT NOT NULL,
+  processed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id, processed_at)
+);
+
