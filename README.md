@@ -24,4 +24,12 @@ docker exec -it lab7-mysql mysql -ulab7 -plab7pass -e "
 SELECT COUNT(*) AS n FROM lab7.predictions;
 SELECT cluster, COUNT(*) AS cnt FROM lab7.predictions GROUP BY cluster ORDER BY cluster;"
 ```
+
+
+```
+sbt clean compile
+sbt run
+sudo docker exec -it lab7-mysql mysql -ulab7 -plab7pass -e \
+"SELECT COUNT(*) AS n FROM lab7.predictions;
+ SELECT cluster, COUNT(*) AS cnt FROM lab7.predictions GROUP BY cluster ORDER BY cluster;"
 ```
